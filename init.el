@@ -84,6 +84,7 @@
 (require 'init-github)
 
 (require 'init-projectile)
+(require 'init-neotree)
 
 (require 'init-compile)
 ;;(require 'init-crontab)
@@ -100,6 +101,9 @@
 (require 'init-haml)
 (require 'init-http)
 (require 'init-python)
+(require 'init-ccmode)
+(require 'init-golang)
+(require 'init-bazelmode)
 (require 'init-haskell)
 (require 'init-elm)
 (require 'init-purescript)
