@@ -84,7 +84,7 @@
 (require 'init-github)
 
 (require 'init-projectile)
-(require 'init-neotree)
+(require 'init-treemacs)
 
 (require 'init-compile)
 ;;(require 'init-crontab)

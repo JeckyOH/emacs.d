@@ -32,11 +32,11 @@
 
   (when (maybe-require-package 'company-go)
     (after-load 'company
-      (add-hook 'go-mode-hook
-                (lambda () (sanityinc/local-push-company-backend 'company-go)))))
+      (after-load 'go-mode
+        (push 'company-go company-backends))))
   (setq gofmt-command "goimports")
   (add-hook 'before-save-hook #'gofmt-before-save)
-  (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
+  (add-to-list 'load-path (concat "/Users/jecky/work/clarifai/go"  "/src/github.com/golang/lint/misc/emacs"))
   (require 'golint)
   (when (maybe-require-package 'dap-mode)
     (dap-mode)
