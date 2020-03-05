@@ -36,11 +36,26 @@
         (push 'company-go company-backends))))
   (setq gofmt-command "goimports")
   (add-hook 'before-save-hook #'gofmt-before-save)
-  (add-to-list 'load-path (concat "/Users/jecky/work/clarifai/go"  "/src/github.com/golang/lint/misc/emacs"))
+  (add-to-list 'load-path (concat "/Users/jecky/work/clarifai/go"  "/src/golang.org/x/lint/misc/emacs"))
   (require 'golint)
   (when (maybe-require-package 'dap-mode)
-    (dap-mode)
-    (dap-ui-mode)
-    (require 'dap-go)))
+    (dap-mode 1)
+    (dap-ui-mode 1)
+    ;; enables mouse hover support
+    (dap-tooltip-mode 1)
+    ;; use tooltips for mouse hover
+    ;; if it is not enabled `dap-mode' will use the minibuffer.
+    (tooltip-mode 1)
+    (require 'dap-go)
+    (add-hook 'dap-stopped-hook
+              (lambda (arg) (call-interactively #'dap-hydra)))
+    (dap-register-debug-template "Go Remote Attach Configuration"
+                                 (list :type "go"
+                                       :request "lauch"
+                                       :name "Attach Executable"
+                                       :mode "remote"
+                                       :program "/Users/jecky/work/clarifai/go/src/clarifai/api"
+                                       :remotePath "/home/ubuntu/work/clarifai/go/src/clarifai/api"))
+    ))
 
 (provide 'init-golang)
